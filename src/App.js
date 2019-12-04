@@ -19,7 +19,6 @@ function App() {
     const latLng = await getLatLng(results[0]);
     setCoordinates(latLng);
     await setAddress(value);
-    return alert("Voce esta pesquisando promoções em " + address);
   };
 
   return (
@@ -46,7 +45,7 @@ function App() {
               <div>
                 <input
                   {...getInputProps({
-                    placeholder: "Digite o endereço da sua localização",
+                    placeholder: "Digite o cidade da sua localização",
                     className: "location-search-input"
                   })}
                 />
@@ -72,6 +71,9 @@ function App() {
               </div>
             )}
           </PlacesAutocomplete>
+          <button className="btn" type="submit">
+            Pesquisar
+          </button>
         </form>
       </div>
     </div>
