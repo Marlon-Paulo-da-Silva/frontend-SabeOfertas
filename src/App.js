@@ -5,7 +5,7 @@ import PlacesAutocomplete, {
   getLatLng
 } from "react-places-autocomplete";
 
-import logo from "./assets/logobo.svg";
+import logo from "./assets/logosabeoferta.svg";
 
 function App() {
   const [address, setAddress] = React.useState("");
