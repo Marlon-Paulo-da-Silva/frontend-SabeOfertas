@@ -72,9 +72,6 @@ function App() {
               </div>
             )}
           </PlacesAutocomplete>
-          {/* <button className="btn-search" onClick={handleSelect()}>
-            Pesquisar
-          </button> */}
         </form>
       </div>
     </div>
