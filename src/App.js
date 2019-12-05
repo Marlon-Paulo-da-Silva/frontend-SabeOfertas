@@ -1,12 +1,18 @@
 import React from "react";
+import api from "./services/api";
 import "./App.css";
+
+import logo from "./assets/logobo.svg";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
 
+<<<<<<< HEAD
 import logo from "./assets/logosabeoferta.svg";
 
+=======
+>>>>>>> master
 function App() {
   const [address, setAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({
@@ -21,6 +27,11 @@ function App() {
     await setAddress(value);
   };
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("Handle submit funcionando!!");
+  }
+
   return (
     <div className="container">
       <div className="content">
@@ -30,7 +41,7 @@ function App() {
           ofertas
         </p>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <PlacesAutocomplete
             value={address}
             onChange={setAddress}
