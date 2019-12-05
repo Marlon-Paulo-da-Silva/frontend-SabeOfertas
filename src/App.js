@@ -1,11 +1,12 @@
 import React from "react";
+import api from "./services/api";
 import "./App.css";
+
+import logo from "./assets/logobo.svg";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
-
-import logo from "./assets/logobo.svg";
 
 function App() {
   const [address, setAddress] = React.useState("");
@@ -22,6 +23,11 @@ function App() {
     return alert("Voce esta pesquisando promoções em " + address);
   };
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("Handle submit funcionando!!");
+  }
+
   return (
     <div className="container">
       <div className="content">
@@ -31,7 +37,7 @@ function App() {
           ofertas
         </p>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <PlacesAutocomplete
             value={address}
             onChange={setAddress}
