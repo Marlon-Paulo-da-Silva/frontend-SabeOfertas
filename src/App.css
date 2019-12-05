@@ -22,7 +22,7 @@ body, input, button {
 
 .container {
   margin: 60px auto 0;
-  max-width: 700px;
+  max-width: 800px;
   width: 100%;
 }
 
@@ -47,12 +47,32 @@ body, input, button {
   margin-bottom: 8px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.content>form label {
+  font-size: 14px;
+  color: #444;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+.content>form label span {
+  font-weight: normal;
+  color: #999;
+  font-size: 12px;
 }
 
 .location-search-input {
   padding: 10px;
   border: #591259 solid;
+  border-radius: 5px;
+  width: 350px;
+}
+
+.input-form {
+  padding: 10px;
+  border: #591259 solid 2px;
   border-radius: 5px;
   width: 350px;
 }
@@ -75,7 +95,18 @@ body, input, button {
   background: #591259;
   color: #fff;
   cursor: pointer;
-  margin-top: 10px;
+  margin: 10px 0px 10px 0px;
+  padding: 0px 10px;
+}
+
+.content button.btn-voltar {
+  background: #ffffff;
+  color: #591259;
+  border: solid #591259;
+}
+
+.content button.btn-voltar:hover {
+  color: #fff;
 }
 
 .content button:hover {
