@@ -1,18 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import api from "./services/api";
 import "./App.css";
 
-import logo from "./assets/logobo.svg";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
 
-<<<<<<< HEAD
 import logo from "./assets/logosabeoferta.svg";
 
-=======
->>>>>>> master
 function App() {
   const [address, setAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({
@@ -25,6 +21,8 @@ function App() {
     const latLng = await getLatLng(results[0]);
     setCoordinates(latLng);
     await setAddress(value);
+
+    console.log(latLng);
   };
 
   function handleSubmit(event) {
@@ -56,7 +54,7 @@ function App() {
               <div>
                 <input
                   {...getInputProps({
-                    placeholder: "Digite o cidade da sua localização",
+                    placeholder: "Digite a cidade da sua localização",
                     className: "location-search-input"
                   })}
                 />
