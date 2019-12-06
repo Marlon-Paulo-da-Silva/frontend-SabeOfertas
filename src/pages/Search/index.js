@@ -11,10 +11,12 @@ import logo from "../../assets/logosabeoferta.svg";
 
 export default function Search({ history }) {
   const [address, setAddress] = React.useState("");
+  const [user, setUser] = useState("");
   const [coordinates, setCoordinates] = useState({
     lat: null,
     lng: null
   });
+  setUser("5de13423f2342f0d10b3e3f0");
 
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
@@ -29,7 +31,7 @@ export default function Search({ history }) {
 
     localStorage.setItem("userAddress", address);
     // console.log(address);
-    // localStorage.setItem("user_id", user);
+    localStorage.setItem("user_id", user);
 
     history.push("/home");
   }
