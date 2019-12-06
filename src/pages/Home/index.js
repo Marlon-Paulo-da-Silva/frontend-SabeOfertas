@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../services/api";
 
-import styles from "./styles.css";
+import "./styles.css";
 
 export default function Home() {
   const [offers, setOffers] = useState([]);
@@ -12,7 +12,6 @@ export default function Home() {
 
       const response = await api.get(`/offers/?city=${userAddress}`);
 
-      console.log(response.data);
       setOffers(response.data);
     }
 
@@ -23,15 +22,9 @@ export default function Home() {
       <ul className="offer-list">
         {offers.map(offer => (
           <li key={offer._id}>
-            {console.log(offer.thumbnail_url)}
             <header
               style={{ backgroundImage: `url(${offer.thumbnail_url})` }}
             />
-
-            {/* <img
-                src="http://localhost:3333/files/capsuladecafe-1575532018039.jpg"
-                alt=""
-              /> */}
 
             <h3>
               <strong>{offer.description}</strong>

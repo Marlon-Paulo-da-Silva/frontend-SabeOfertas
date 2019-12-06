@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
+
 import api from "../../services/api";
 
-import styles from "./styles.css";
+import "./styles.css";
 
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -10,10 +12,11 @@ import PlacesAutocomplete, {
 
 import camera from "../../assets/camera.svg";
 
-export default function NewOffer() {
+export default function NewOffer({ history }) {
   const [thumbnail, setThumbnail] = useState(null);
 
   const [address, setAddress] = React.useState("");
+  const [city, setCity] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [productName, setProductName] = React.useState("");
   const [price, setPrice] = React.useState("");
@@ -34,108 +37,157 @@ export default function NewOffer() {
     const latLng = await getLatLng(results[0]);
     setCoordinates(latLng);
     setAddress(value);
+    setCity(address);
   };
 
-  function handleSubmit() {}
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!city) return alert("Por favor digite o endereço");
+
+    const data = new FormData();
+    const user_id = localStorage.getItem("user");
+
+    data.append("thumbnail", thumbnail);
+    data.append("city", city);
+    data.append("description", description);
+    data.append("productName", productName);
+    data.append("price", price);
+    data.append("companyName", companyName);
+    data.append("categories", categories);
+    data.append("lat", coordinates.lat);
+    data.append("lng", coordinates.lng);
+
+    await api.post("/offers", data, {
+      headers: { user_id }
+    });
+
+    console.log(city);
+    console.log(thumbnail);
+    console.log(description);
+    console.log(productName);
+    console.log(price);
+    console.log(companyName);
+    console.log(categories);
+    console.log(coordinates.lat);
+    console.log(coordinates.lng);
+
+    history.push("/dashboardprofile");
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label
-        id="thumbnail"
-        style={{ backgroundImage: `url(${preview})` }}
-        className={thumbnail ? "has-thumbnail" : ""}
-      >
+    <>
+      <form onSubmit={handleSubmit}>
+        <label
+          id="thumbnail"
+          style={{ backgroundImage: `url(${preview})` }}
+          className={thumbnail ? "has-thumbnail" : ""}
+        >
+          <input
+            required
+            type="file"
+            onChange={event => setThumbnail(event.target.files[0])}
+          />
+          <img src={camera} alt="Select img" />
+        </label>
+        <label htmlFor="productName">Qual o Nome do Produto? *</label>
         <input
-          type="file"
-          onChange={event => setThumbnail(event.target.files[0])}
+          className="input-form"
+          id="productName"
+          placeholder="Nome do Produto"
+          value={productName}
+          onChange={event => setProductName(event.target.value)}
+          required
         />
-        <img src={camera} alt="Select img" />
-      </label>
-      <label htmlFor="productName">Qual o Nome do Produto? *</label>
-      <input
-        className="input-form"
-        id="productName"
-        placeholder="Qual empresa?"
-        value={productName}
-        onChange={event => setProductName(event.target.value)}
-      />
-      <label htmlFor="address">Qual a Localização de sua Empresa? *</label>
-      <PlacesAutocomplete
-        value={address}
-        onChange={setAddress}
-        onSelect={handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: "Digite a sua localização",
-                className: "location-search-input input-form",
-                id: "address"
-              })}
-            />
+        <label htmlFor="address">Qual a Localização de sua Empresa? *</label>
+        <PlacesAutocomplete
+          value={address}
+          onChange={setAddress}
+          onSelect={handleSelect}
+          required
+        >
+          {({
+            getInputProps,
+            suggestions,
+            getSuggestionItemProps,
+            loading
+          }) => (
             <div>
-              {loading ? <div>...loading</div> : null}
-              {suggestions.map(suggestion => {
-                const style = {
-                  backgroundColor: suggestion.active ? "#59125941" : "#fff"
-                };
+              <input
+                {...getInputProps({
+                  placeholder: "Digite a sua localização",
+                  className: "location-search-input input-form",
+                  id: "address"
+                })}
+              />
+              <div>
+                {loading ? <div>...loading</div> : null}
+                {suggestions.map(suggestion => {
+                  const style = {
+                    backgroundColor: suggestion.active ? "#59125941" : "#fff"
+                  };
 
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      style,
-                      className: "inputSuggestion"
-                    })}
-                  >
-                    {suggestion.description}
-                  </div>
-                );
-              })}
+                  return (
+                    <div
+                      {...getSuggestionItemProps(suggestion, {
+                        style,
+                        className: "inputSuggestion"
+                      })}
+                    >
+                      {suggestion.description}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
-      <label htmlFor="company">Qual o nome da Empresa? *</label>
-      <input
-        className="input-form"
-        id="company"
-        placeholder="Qual empresa?"
-        value={companyName}
-        onChange={event => setCompanyName(event.target.value)}
-      />
+          )}
+        </PlacesAutocomplete>
+        <label htmlFor="company">Qual o nome da Empresa? *</label>
+        <input
+          className="input-form"
+          id="company"
+          placeholder="Qual empresa?"
+          value={companyName}
+          onChange={event => setCompanyName(event.target.value)}
+          required
+        />
 
-      <label htmlFor="description">
-        O que Gostaria de Colocar na Promoção?:: *
-      </label>
-      <input
-        className="input-form"
-        id="description"
-        placeholder="Diga mais sobre a promoção"
-        value={description}
-        onChange={event => setDescription(event.target.value)}
-      />
-      <label htmlFor="price">Qual o Preço da Promoção? *</label>
-      <input
-        className="input-form"
-        id="price"
-        placeholder="Preço da Promoção"
-        value={price}
-        onChange={event => setPrice(event.target.value)}
-      />
-      <label htmlFor="categories">
-        Digite as Categorias <span>(separadas por virgulas) *</span>
-      </label>
-      <input
-        className="input-form"
-        id="categories"
-        placeholder="Categorias"
-        value={categories}
-        onChange={event => setCategories(event.target.value)}
-      />
-      <button type="submit" className="btn">
-        Cadastrar
-      </button>
-    </form>
+        <label htmlFor="description">Descrição da sua Promoção: *</label>
+        <input
+          className="input-form"
+          id="description"
+          placeholder="Diga mais sobre a sua promoção"
+          value={description}
+          onChange={event => setDescription(event.target.value)}
+          required
+        />
+        <label htmlFor="price">Qual o Preço da Promoção? *</label>
+        <input
+          className="input-form"
+          id="price"
+          placeholder="Preço da Promoção"
+          value={price}
+          onChange={event => setPrice(event.target.value)}
+          required
+        />
+        <label htmlFor="categories">
+          Digite as Categorias <span>(separadas por virgulas) *</span>
+        </label>
+        <input
+          className="input-form"
+          id="categories"
+          placeholder="Categorias"
+          value={categories}
+          onChange={event => setCategories(event.target.value)}
+          required
+        />
+        <button type="submit" className="btn">
+          Cadastrar
+        </button>
+      </form>
+      <Link to="/dashboardprofile">
+        <button className="btn btn-voltar">Voltar Para Minhas Ofertas</button>
+      </Link>
+    </>
   );
 }

@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../../services/api";
 
+import "./styles.css";
+
 export default function DashboardProfile() {
+  const [offers, setOffers] = useState([]);
   useEffect(() => {
     async function myOffers() {
       const user_id = "5de13423f2342f0d10b3e3f0";
@@ -10,10 +14,35 @@ export default function DashboardProfile() {
         headers: { user_id }
       });
 
-      console.log(response.data);
+      setOffers(response.data);
     }
 
     myOffers();
   }, []);
-  return <div></div>;
+  return (
+    <>
+      <ul className="offer-list">
+        {offers.map(offer => (
+          <li key={offer._id}>
+            <header
+              style={{ backgroundImage: `url(${offer.thumbnail_url})` }}
+            />
+
+            <h3>
+              <strong>{offer.description}</strong>
+            </h3>
+            <h4>{offer.companyName}</h4>
+            <span>{offer.price ? `R$ ${offer.price}` : `GRATIS`}</span>
+          </li>
+        ))}
+      </ul>
+
+      <Link to="/newoffer">
+        <button className="btn">Cadastrar mais Ofertas</button>
+      </Link>
+      <Link to="/home">
+        <button className="btn btn-voltar">Ver todas as ofertas</button>
+      </Link>
+    </>
+  );
 }

@@ -28,6 +28,7 @@ export default function Search({ history }) {
     console.log(coordinates);
 
     localStorage.setItem("userAddress", address);
+    // console.log(address);
     // localStorage.setItem("user_id", user);
 
     history.push("/home");

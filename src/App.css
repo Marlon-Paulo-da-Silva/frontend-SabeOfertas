@@ -86,7 +86,7 @@ body, input, button {
 }
 
 .content button.btn {
-  border: 0;
+  border: solid #591259;
   border-radius: 5px;
   width: 100%;
   height: 42px;
@@ -97,6 +97,7 @@ body, input, button {
   cursor: pointer;
   margin: 10px 0px 10px 0px;
   padding: 0px 10px;
+  min-width: 200px;
 }
 
 .content button.btn-voltar {
@@ -109,6 +110,6 @@ body, input, button {
   color: #fff;
 }
 
-.content button:hover {
+.content button.btn:hover {
   background: #613261;
 }
