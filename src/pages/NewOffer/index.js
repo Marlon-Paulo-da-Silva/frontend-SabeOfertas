@@ -4,13 +4,12 @@ import { Link } from "react-router-dom";
 import api from "../../services/api";
 
 import "./styles.css";
+import camera from "../../assets/camera.svg";
 
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
-
-import camera from "../../assets/camera.svg";
 
 export default function NewOffer({ history }) {
   const [thumbnail, setThumbnail] = useState(null);
