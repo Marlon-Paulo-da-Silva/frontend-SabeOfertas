@@ -2,4 +2,4 @@
 
 ## Confira como esta ficando..
 
-### [SabeOfertas](https://frontsabeofertas-estatico.netlify.com/)
+### [SabeOfertas](https://sabeofertas.netlify.com/)
