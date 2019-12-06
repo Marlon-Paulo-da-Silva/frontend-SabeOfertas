@@ -1,4 +1,4 @@
-# Frontend Estatico do SabeOfertas
+# Frontend SabeOfertas
 
 ## Confira como esta ficando..
 
