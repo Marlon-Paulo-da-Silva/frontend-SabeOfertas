@@ -28,6 +28,8 @@ export default function Search({ history }) {
     console.log(coordinates);
 
     localStorage.setItem("userAddress", address);
+    localStorage.setItem("findCoordinatesLat", coordinates.lat);
+    localStorage.setItem("findCoordinatesLng", coordinates.lng);
     // console.log(address);
     // localStorage.setItem("user_id", user);
 

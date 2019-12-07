@@ -6,6 +6,16 @@ import "./styles.css";
 
 export default function DashboardProfile() {
   const [offers, setOffers] = useState([]);
+
+  function formataDinheiro(n) {
+    return (
+      "R$ " +
+      n
+        .toFixed(2)
+        .replace(".", ",")
+        .replace(/(\d)(?=(\d{3})+\,)/g, "$1.")
+    );
+  }
   useEffect(() => {
     async function myOffers() {
       const user_id = "5de13423f2342f0d10b3e3f0";
@@ -19,6 +29,7 @@ export default function DashboardProfile() {
 
     myOffers();
   }, []);
+
   return (
     <>
       <ul className="offer-list">
@@ -32,7 +43,7 @@ export default function DashboardProfile() {
               <strong>{offer.description}</strong>
             </h3>
             <h4>{offer.companyName}</h4>
-            <span>{offer.price ? `R$ ${offer.price}` : `GRATIS`}</span>
+            <span>{offer.price ? formataDinheiro(offer.price) : `GRATIS`}</span>
           </li>
         ))}
       </ul>

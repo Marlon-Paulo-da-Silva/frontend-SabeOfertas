@@ -57,6 +57,8 @@ export default function NewOffer({ history }) {
     data.append("lat", coordinates.lat);
     data.append("lng", coordinates.lng);
 
+    console.log(data);
+
     await api.post("/offers", data, {
       headers: { user_id }
     });

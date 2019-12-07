@@ -6,7 +6,9 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   min-height: 100%;
 }
 
@@ -15,14 +17,15 @@ body {
   -webkit-font-smoothing: antialiased !important;
 }
 
-body, input, button {
+body,
+input,
+button {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-size: 14px;
 }
 
 .container {
   margin: 60px auto 0;
-  max-width: 800px;
   width: 100%;
 }
 
@@ -31,25 +34,26 @@ body, input, button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   border-radius: 7px;
   padding: 30px;
+  margin: 0px 30px 20px 30px;
+
 }
 
-.content>p {
+.content > p {
   font-size: 22px;
   line-height: 30px;
   margin-bottom: 30px;
 }
 
-.content>form {
+.content > form {
   font-size: 14px;
   margin-bottom: 8px;
   display: flex;
   flex-direction: column;
 }
 
-.content>form label {
+.content > form label {
   font-size: 14px;
   color: #444;
   font-weight: bold;
@@ -57,7 +61,7 @@ body, input, button {
   margin-top: 15px;
 }
 
-.content>form label span {
+.content > form label span {
   font-weight: normal;
   color: #999;
   font-size: 12px;
@@ -112,4 +116,7 @@ body, input, button {
 
 .content button.btn:hover {
   background: #613261;
+}
+
+.sidebar {
 }

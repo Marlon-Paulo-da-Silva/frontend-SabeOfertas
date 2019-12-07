@@ -1,5 +1,7 @@
-# Frontend Estatico do SabeOfertas
+# Frontend do SabeOfertas
+
+### Este é um frontend separado hospedado no Netlify
 
 ## Confira como esta ficando..
 
-### [SabeOfertas](https://frontsabeofertas-estatico.netlify.com/)
+## [SabeOfertas](https://sabeofertas.netlify.com//)
