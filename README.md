@@ -1,5 +1,5 @@
-# Frontend Estatico do SabeOfertas
+# Frontend SabeOfertas
 
 ## Confira como esta ficando..
 
-### [SabeOfertas](https://frontsabeofertas-estatico.netlify.com/)
+### [SabeOfertas](https://sabeofertas.netlify.com/)
