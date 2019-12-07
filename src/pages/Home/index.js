@@ -44,6 +44,17 @@ export default function Home() {
 
       setOffers(response.data);
       setCloneOffers(response.data);
+
+      const listener = e => {
+        if (e.key === "Escape") {
+          setSelectedOffer(null);
+        }
+      };
+      window.addEventListener("keydown", listener);
+
+      return () => {
+        window.removeEventListener("keydown", listener);
+      };
     }
 
     loadOffers();
