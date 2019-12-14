@@ -4,10 +4,4 @@
 
 ## Confira como esta ficando..
 
-## [SabeOfertas](https://sabeofertas.netlify.com//)
-=======
-# Frontend SabeOfertas
-
-## Confira como esta ficando..
-
-### [SabeOfertas](https://sabeofertas.netlify.com/)
+## [SabeOfertas](https://sabeofertas.netlify.com/)
