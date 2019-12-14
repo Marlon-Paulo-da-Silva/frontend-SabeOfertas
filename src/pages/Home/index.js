@@ -125,6 +125,7 @@ export default function Home() {
         .replace(/(\d)(?=(\d{3})+\,)/g, "$1.")
     );
   }
+  const userAddress = localStorage.getItem("userAddress");
 
   useEffect(() => {
     async function loadOffers() {
@@ -169,17 +170,16 @@ export default function Home() {
               edge="start"
               className={clsx(classes.menuButton, open && classes.hide)}
             >
-              <MenuIcon /> Todas Na Cidade
+              <ChevronRightIcon /> Mostre-me
             </IconButton>
+
             <Typography variant="h6" noWrap>
               <div className="btn-home">
                 <Link to="/newoffer">
-                  <button className="btn">Cadastrar minhas Ofertas</button>
+                  <button className="btn">Cadastrar</button>
                 </Link>
                 <Link to="/">
-                  <button className="btn btn-voltar">
-                    Procurar em outra cidade
-                  </button>
+                  <button className="btn btn-voltar">mudar cidade</button>
                 </Link>
               </div>
             </Typography>
@@ -195,6 +195,7 @@ export default function Home() {
           }}
         >
           <div className={classes.drawerHeader}>
+            <h3>FECHAR</h3>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "ltr" ? (
                 <CloseIcon fontSize="large" />
@@ -203,7 +204,8 @@ export default function Home() {
               )}
             </IconButton>
           </div>
-
+          <Divider />
+          <h2>{userAddress}</h2>
           <Divider />
           <List>
             <ul className="offer-list">
@@ -220,6 +222,7 @@ export default function Home() {
                   <span>
                     {offer.price ? formataDinheiro(offer.price) : `GRATIS`}
                   </span>
+                  <Divider />
                 </li>
               ))}
             </ul>
