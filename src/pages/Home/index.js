@@ -28,7 +28,7 @@ import point from "../../assets/flag-purple.png";
 
 import "./styles.css";
 
-const drawerWidth = "50vw";
+const drawerWidth = "60%";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -220,7 +220,13 @@ export default function Home({ history }) {
           <List>
             <ul className="offer-list">
               {offers.map(offer => (
-                <li key={offer._id}>
+                <li
+                  onClick={e => {
+                    e.preventDefault();
+                    setSelectedOffer(offer);
+                  }}
+                  key={offer._id}
+                >
                   <ListItemIcon>
                     <img className="img-list" src={offer.thumbnail_url} />
                   </ListItemIcon>

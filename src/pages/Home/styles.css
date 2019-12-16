@@ -58,18 +58,16 @@
 }
 
 ul.offer-list {
-  width: 100%;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  grid-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
   padding: 10px;
-  max-width: 800px;
 }
 
 ul.offer-list li {
   display: flex;
   flex-direction: column;
+  max-width: 190px;
+  padding: 10px;
 }
 
 ul.offer-list li header {
@@ -81,10 +79,10 @@ ul.offer-list li header {
 
 ul.offer-list li strong {
   margin-top: 10px;
-  font-size: 24px;
+  font-size: 1.15rem;
+  line-height: 1.17rem;
   color: #444;
 }
-
 ul.offer-list li span {
   font-size: 25px;
   color: #888;
@@ -101,6 +99,10 @@ ul.offer-list li span {
   background: none;
   border: none;
   cursor: pointer;
+}
+.mapboxgl-popup-close-button {
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .marker-btn img {
