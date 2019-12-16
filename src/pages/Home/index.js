@@ -53,7 +53,8 @@ const useStyles = makeStyles(theme => ({
     })
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    fontSize: "1.25em"
   },
   hide: {
     display: "none"
@@ -170,19 +171,22 @@ export default function Home() {
               edge="start"
               className={clsx(classes.menuButton, open && classes.hide)}
             >
-              <ChevronRightIcon /> Mostre-me
+              <MenuIcon /> Mostre-me Todas Na Cidade
             </IconButton>
 
-            <Typography variant="h6" noWrap>
-              <div className="btn-home">
-                <Link to="/newoffer">
-                  <button className="btn">Cadastrar</button>
-                </Link>
-                <Link to="/">
-                  <button className="btn btn-voltar">mudar cidade</button>
-                </Link>
-              </div>
-            </Typography>
+            <Typography variant="h6" noWrap></Typography>
+          </Toolbar>
+          <Divider />
+
+          <Toolbar className="toolbar-button">
+            <div className="btn-home">
+              <Link to="/newoffer">
+                <button className="btn-cadastro">Cadastrar</button>
+              </Link>
+              <Link to="/">
+                <button className="btn btn-voltar">Mudar cidade</button>
+              </Link>
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -205,8 +209,9 @@ export default function Home() {
             </IconButton>
           </div>
           <Divider />
-          <h2>{userAddress}</h2>
+          <h2 className="userAdress">{userAddress}</h2>
           <Divider />
+
           <List>
             <ul className="offer-list">
               {offers.map(offer => (
@@ -237,7 +242,7 @@ export default function Home() {
         </main>
       </div>
       <div className="content-home">
-        <div className="sidebar">
+        <div className="mapbox-background">
           <ReactMapGL
             {...viewport}
             mapboxApiAccessToken="pk.eyJ1IjoibWFybG9ucGF1bG8iLCJhIjoiY2szdWo1NzZvMGVibTNlbXJkcTM5eGlvMCJ9.JKN3xy0S62kf8L1MqJWAHQ"

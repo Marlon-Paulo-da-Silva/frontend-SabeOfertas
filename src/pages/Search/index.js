@@ -63,7 +63,7 @@ export default function Search({ history }) {
                 })}
               />
               <div>
-                {loading ? <div>...loading</div> : null}
+                {loading ? <div>Procurando Localização...</div> : null}
                 {suggestions.map(suggestion => {
                   const style = {
                     backgroundColor: suggestion.active ? "#59125941" : "#fff"

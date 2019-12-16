@@ -6,7 +6,9 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   min-height: 100%;
 }
 
@@ -15,7 +17,9 @@ body {
   -webkit-font-smoothing: antialiased !important;
 }
 
-body, input, button {
+body,
+input,
+button {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-size: 14px;
 }
@@ -32,32 +36,33 @@ body, input, button {
   align-items: center;
   border-radius: 7px;
   padding: 30px;
-  margin: 0px 30px 20px 30px;
+  margin: 0px 10px 10px 10px;
   z-index: 1;
+  font-size: 1.15em;
 }
 
-.content>p {
-  font-size: 22px;
+.content > p {
+  font-size: 1.15em;
   line-height: 30px;
   margin-bottom: 30px;
 }
 
-.content>form {
+.content > form {
   font-size: 14px;
   margin-bottom: 8px;
   display: flex;
   flex-direction: column;
 }
 
-.content>form label {
-  font-size: 14px;
+.content > form label {
+  font-size: 1.15em;
   color: #444;
   font-weight: bold;
   margin-bottom: 5px;
   margin-top: 15px;
 }
 
-.content>form label span {
+.content > form label span {
   font-weight: normal;
   color: #999;
   font-size: 12px;
@@ -67,14 +72,14 @@ body, input, button {
   padding: 10px;
   border: #591259 solid;
   border-radius: 5px;
-  width: 350px;
+  width: 300px;
 }
 
 .input-form {
   padding: 10px;
   border: #591259 solid 2px;
   border-radius: 5px;
-  width: 350px;
+  width: 200px;
 }
 
 .inputSuggestion {
@@ -90,7 +95,7 @@ body, input, button {
   border-radius: 5px;
   width: 100%;
   height: 42px;
-  font-size: 16px;
+  font-size: 1.25em;
   font-weight: bold;
   background: #591259;
   color: #fff;
@@ -114,4 +119,5 @@ body, input, button {
   background: #613261;
 }
 
-.sidebar {}
+.sidebar {
+}
