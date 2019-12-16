@@ -79,7 +79,7 @@ button {
   padding: 10px;
   border: #591259 solid 2px;
   border-radius: 5px;
-  width: 200px;
+  width: 270px;
 }
 
 .inputSuggestion {
@@ -109,6 +109,8 @@ button {
   background: #ffffff;
   color: #591259;
   border: solid #591259;
+  min-width: 200px;
+  width: 270px;
 }
 
 .content button.btn-voltar:hover {

@@ -122,7 +122,7 @@ export default function NewOffer({ history }) {
                 })}
               />
               <div>
-                {loading ? <div>...loading</div> : null}
+                {loading ? <div>Procurando Localização...</div> : null}
                 {suggestions.map(suggestion => {
                   const style = {
                     backgroundColor: suggestion.active ? "#59125941" : "#fff"
@@ -187,7 +187,7 @@ export default function NewOffer({ history }) {
         </button>
       </form>
       <Link to="/dashboardprofile">
-        <button className="btn btn-voltar">Voltar Para Minhas Ofertas</button>
+        <button className="btn btn-voltar">Ver Minhas Ofertas</button>
       </Link>
     </>
   );

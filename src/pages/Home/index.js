@@ -16,12 +16,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 // import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import CloseIcon from "@material-ui/icons/Close";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
+// import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 
 // import Drawer from "../../components/Drawer";
 // import Maps from "../../components/maps";
@@ -90,7 +86,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0
   }
 }));
-export default function Home() {
+export default function Home({ history }) {
   const findCoordinatesLat = localStorage.getItem("findCoordinatesLat");
   const findCoordinatesLng = localStorage.getItem("findCoordinatesLng");
   const numberLatSearch = parseFloat(findCoordinatesLat);
@@ -137,6 +133,13 @@ export default function Home() {
       const response = await api.get(`/offers/?city=${userAddress}`);
 
       setOffers(response.data);
+      console.log(response.data);
+      if (response.data.length == 0) {
+        alert(
+          "Não temos promoções nessa cidade, por favor tente Presidente Prudente - SP"
+        );
+        history.push("/");
+      }
       setCloneOffers(response.data);
 
       const listener = e => {

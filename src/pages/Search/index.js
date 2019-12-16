@@ -30,6 +30,10 @@ export default function Search({ history }) {
     localStorage.setItem("userAddress", address);
     localStorage.setItem("findCoordinatesLat", coordinates.lat);
     localStorage.setItem("findCoordinatesLng", coordinates.lng);
+
+    if (!coordinates.lat)
+      return alert("Por favor clique em alguma localização");
+
     // console.log(address);
     // localStorage.setItem("user_id", user);
 
@@ -48,6 +52,7 @@ export default function Search({ history }) {
           value={address}
           onChange={setAddress}
           onSelect={handleSelect}
+          required
         >
           {({
             getInputProps,
