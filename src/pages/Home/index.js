@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import api from "../../services/api";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
+import ReactDependentScript from "react-dependent-script";
+
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -246,55 +248,61 @@ export default function Home({ history }) {
       </div>
       <div className="content-home">
         <div className="mapbox-background">
-          <ReactMapGL
-            {...viewport}
-            mapboxApiAccessToken="pk.eyJ1IjoibWFybG9ucGF1bG8iLCJhIjoiY2szdWo1NzZvMGVibTNlbXJkcTM5eGlvMCJ9.JKN3xy0S62kf8L1MqJWAHQ"
-            mapStyle="mapbox://styles/mapbox/streets-v11"
-            onViewportChange={viewport => {
-              setViewport(viewport);
-            }}
+          <ReactDependentScript
+            scripts={[
+              "https://maps.googleapis.com/maps/api/js?key=AIzaSyA8SNWyNNA1QDjQrKweLFcBVIFfPCFez4M&libraries=places"
+            ]}
           >
-            {offers.map(offer => (
-              <Marker
-                key={offer._id}
-                latitude={parseFloat(offer.lat)}
-                longitude={parseFloat(offer.lng)}
-              >
-                <button
-                  className="marker-btn"
-                  onClick={e => {
-                    e.preventDefault();
-                    setSelectedOffer(offer);
+            <ReactMapGL
+              {...viewport}
+              mapboxApiAccessToken="pk.eyJ1IjoibWFybG9ucGF1bG8iLCJhIjoiY2szdWo1NzZvMGVibTNlbXJkcTM5eGlvMCJ9.JKN3xy0S62kf8L1MqJWAHQ"
+              mapStyle="mapbox://styles/mapbox/streets-v11"
+              onViewportChange={viewport => {
+                setViewport(viewport);
+              }}
+            >
+              {offers.map(offer => (
+                <Marker
+                  key={offer._id}
+                  latitude={parseFloat(offer.lat)}
+                  longitude={parseFloat(offer.lng)}
+                >
+                  <button
+                    className="marker-btn"
+                    onClick={e => {
+                      e.preventDefault();
+                      setSelectedOffer(offer);
+                    }}
+                  >
+                    <img src={point} alt="point" />
+                  </button>
+                </Marker>
+              ))}
+
+              {selectedOffer ? (
+                <Popup
+                  latitude={parseFloat(selectedOffer.lat)}
+                  longitude={parseFloat(selectedOffer.lng)}
+                  onClose={() => {
+                    setSelectedOffer(null);
                   }}
                 >
-                  <img src={point} alt="point" />
-                </button>
-              </Marker>
-            ))}
-
-            {selectedOffer ? (
-              <Popup
-                latitude={parseFloat(selectedOffer.lat)}
-                longitude={parseFloat(selectedOffer.lng)}
-                onClose={() => {
-                  setSelectedOffer(null);
-                }}
-              >
-                <div>
-                  <img
-                    className="popup-thumb"
-                    width={240}
-                    src={selectedOffer.thumbnail_url}
-                    alt="thumbnail product"
-                  />
-                  <h3>{selectedOffer.productName}</h3>
-                  <p>{selectedOffer.description}</p>
-                  <p>{selectedOffer.companyName}</p>
-                  <span>{formataDinheiro(selectedOffer.price)}</span>
-                </div>
-              </Popup>
-            ) : null}
-          </ReactMapGL>
+                  <div>
+                    <img
+                      className="popup-thumb"
+                      width={240}
+                      src={selectedOffer.thumbnail_url}
+                      alt="thumbnail product"
+                    />
+                    <h3>{selectedOffer.productName}</h3>
+                    <p>{selectedOffer.description}</p>
+                    <p>{selectedOffer.companyName}</p>
+                    <span>{formataDinheiro(selectedOffer.price)}</span>
+                  </div>
+                </Popup>
+              ) : null}
+            </ReactMapGL>
+          </ReactDependentScript>
         </div>
       </div>
 
